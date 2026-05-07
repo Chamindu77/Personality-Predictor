@@ -1,10 +1,3 @@
-"""
-Endpoints:
-  GET  /         → Welcome message
-  GET  /health   → Health check + model info
-  POST /predict  → Personality prediction
-"""
-
 import os
 import logging
 
@@ -166,7 +159,6 @@ def preprocess_input(data: PersonalityInput) -> pd.DataFrame:
     for col in feature_cols:
         val = getattr(data, col)
         if col in yes_no_cols:
-            # Map Yes → 1.0, No → 0.0
             row[col] = 1.0 if str(val).lower() == "yes" else 0.0
         else:
             row[col] = float(val)
